@@ -11,7 +11,7 @@ defmodule Scrum2000.Utils do
     is_date_after_start_date and is_date_before_end_date
   end
 
-  defp date_from_iso8601_datetime(datetime) do
+  def date_from_iso8601_datetime(datetime) do
     {:ok, datetime, 0} = DateTime.from_iso8601(datetime)
     DateTime.to_date(datetime)
   end
