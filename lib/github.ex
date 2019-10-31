@@ -1,7 +1,7 @@
-defmodule Scrum2000.Github do
+defmodule Deckard.Github do
 
-  alias Scrum2000.PullRequest
-  alias Scrum2000.Utils
+  alias Deckard.PullRequest
+  alias Deckard.Utils
   alias Jason, as: JSON
 
   @github_api_endpoint "https://api.github.com/graphql"
@@ -35,10 +35,10 @@ defmodule Scrum2000.Github do
     |> Enum.filter(&is_org_name?(&1, org_name))
   end
 
-  defp get_http_provider(), do: Process.get(:scrum2000_http_provider, Application.get_env(:scrum2000, :http_provider))
+  defp get_http_provider(), do: Process.get(:deckard_http_provider, Application.get_env(:deckard, :http_provider))
   defp build_query_body(), do: JSON.encode!(%{"query" => @query})
   defp get_headers(), do: ["Authorization": "Basic #{get_credentials()}"]
-  defp get_credentials(), do: Application.get_env(:scrum2000, :github_basic_auth) |> Base.encode64()
+  defp get_credentials(), do: Application.get_env(:deckard, :github_basic_auth) |> Base.encode64()
   defp extract_body({:ok, %HTTPoison.Response{body: body}}), do: body
   defp extract_nodes(%{"data" => %{"viewer" => %{"pullRequests" => %{"nodes" => nodes}}}}), do: nodes
 

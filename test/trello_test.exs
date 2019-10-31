@@ -1,7 +1,7 @@
-defmodule Scrum2000.TrelloTest do
+defmodule Deckard.TrelloTest do
   use ExUnit.Case
 
-  alias Scrum2000.Trello
+  alias Deckard.Trello
 
   test "post a new scrum" do
     assert :ok == Trello.post_comment_if_new("VALID_CARD_ID", "Scrum (10.19) [2h] Sample message")
@@ -23,7 +23,7 @@ defmodule Scrum2000.TrelloTest do
   end
 
   setup do
-    Process.put(:scrum2000_http_provider, Scrum2000.TrelloTest.MockHttp)
+    Process.put(:deckard_http_provider, Deckard.TrelloTest.MockHttp)
     :ok
   end
 end

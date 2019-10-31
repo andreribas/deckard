@@ -1,4 +1,4 @@
-defmodule Scrum2000.Utils do
+defmodule Deckard.Utils do
 
   def is_iso8601_date_between_iso8601_dates?(date, start_date, end_date) do
     date = date_from_iso8601_datetime(date)

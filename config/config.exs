@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :scrum2000, [
+config :deckard, [
   http_provider: HTTPoison,
   worked_hours: fn -> Enum.take_random(4..6, 1) |> Enum.at(0) end
 ]

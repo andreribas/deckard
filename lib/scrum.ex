@@ -1,6 +1,6 @@
-defmodule Scrum2000.Scrum do
+defmodule Deckard.Scrum do
 
-  alias Scrum2000.PullRequest
+  alias Deckard.PullRequest
 
   def build_scrum_summary(pull_requests) do
     pull_requests
@@ -31,7 +31,7 @@ defmodule Scrum2000.Scrum do
   end
 
   defp format_date(datetime) do
-    date = Scrum2000.Utils.date_from_iso8601_datetime(datetime)
+    date = Deckard.Utils.date_from_iso8601_datetime(datetime)
     "#{date.month}.#{date.day}"
   end
 
@@ -54,7 +54,7 @@ defmodule Scrum2000.Scrum do
     %PullRequest{pull_request | scrum_message: build_scrum_string(pull_request)}
   end
 
-  defp get_worked_hours, do: Process.get(:scrum2000_worked_hours, Application.get_env(:scrum2000, :worked_hours)).()
+  defp get_worked_hours, do: Process.get(:deckard_worked_hours, Application.get_env(:deckard, :worked_hours)).()
 
   defp fill_worktime(pull_request, task_worktime), do: %PullRequest{pull_request | work_time: task_worktime}
 

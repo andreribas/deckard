@@ -1,9 +1,9 @@
-defmodule Scrum2000.Main do
+defmodule Deckard.Main do
 
-  alias Scrum2000.Github
-  alias Scrum2000.Scrum
-  alias Scrum2000.Trello
-  alias Scrum2000.PullRequest
+  alias Deckard.Github
+  alias Deckard.Scrum
+  alias Deckard.Trello
+  alias Deckard.PullRequest
 
   def execute() do
     org_name = "ebanx"

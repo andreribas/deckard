@@ -1,4 +1,4 @@
-defmodule Scrum2000.PullRequest do
+defmodule Deckard.PullRequest do
   defstruct raw_title: nil,
             title: nil,
             trello_card: nil,

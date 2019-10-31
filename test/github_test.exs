@@ -1,8 +1,8 @@
-defmodule Scrum2000.GithubTest do
+defmodule Deckard.GithubTest do
   use ExUnit.Case
 
-  alias Scrum2000.Github
-  alias Scrum2000.PullRequest
+  alias Deckard.Github
+  alias Deckard.PullRequest
 
   test "valid github response is properly parsed" do
     expected_result = [
@@ -66,7 +66,7 @@ defmodule Scrum2000.GithubTest do
   end
 
   setup do
-    Process.put(:scrum2000_http_provider, Scrum2000.GithubTest.MockHttp)
+    Process.put(:deckard_http_provider, Deckard.GithubTest.MockHttp)
     :ok
   end
 
