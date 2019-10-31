@@ -7,5 +7,6 @@ defmodule Scrum2000.PullRequest do
             repo: nil,
             org_name: nil,
             datetime: nil,
-            work_time: nil
+            work_time: nil,
+            scrum_message: nil
 end
