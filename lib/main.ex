@@ -5,10 +5,8 @@ defmodule Deckard.Main do
   alias Deckard.Trello
   alias Deckard.PullRequest
 
-  def execute() do
+  def execute(start_date, end_date) do
     org_name = "ebanx"
-    start_date = "2019-10-21"
-    end_date = "2019-10-25"
 
     summary = Github.get_pull_requests(org_name, start_date, end_date)
     |> Scrum.build_scrum_summary()

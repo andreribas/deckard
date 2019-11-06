@@ -21,4 +21,4 @@ edit dates in `lib/main.ex`
 
 ```./run.sh```
 
-```Scrum2000.Main.execute```
+```Deckard.Main.execute("2019-11-04", "2019-11-08")```
