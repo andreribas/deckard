@@ -32,7 +32,7 @@ defmodule Deckard.Scrum do
 
   defp format_date(datetime) do
     date = Deckard.Utils.date_from_iso8601_datetime(datetime)
-    "#{date.day}.#{date.month}.#{date.year}}"
+    "#{date.day}.#{date.month}.#{date.year}"
   end
 
   defp format_worktime(work_time) do
