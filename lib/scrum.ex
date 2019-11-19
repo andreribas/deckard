@@ -1,6 +1,7 @@
 defmodule Deckard.Scrum do
 
   alias Deckard.PullRequest
+  alias Deckard.Trello
 
   def build_scrum_summary(pull_requests) do
     pull_requests
@@ -12,11 +13,22 @@ defmodule Deckard.Scrum do
 
   def print_scrum_summary(pull_requests) do
     pull_requests
-    |> Enum.group_by(&by_trello_card/1, fn %PullRequest{scrum_message: scrum_message} -> " - #{scrum_message}" end)
+    |> Enum.group_by(&by_trello_card/1, &build_summary_scrum_string/1)
     |> Enum.map(&build_scrum_summary_message/1)
     |> Enum.join("\n")
     |> IO.puts
   end
+
+  defp build_summary_scrum_string(%PullRequest{scrum_message: scrum_message, trello_card: card_id}) do
+    card_comments = Trello.get_comments(card_id)
+    prefix = scrum_message
+    |> Trello.is_comment_already_posted?(card_comments)
+    |> get_summary_prefix_if_comment_id_posted
+    " #{prefix} #{scrum_message}"
+  end
+
+  defp get_summary_prefix_if_comment_id_posted(_comment_is_posted = true), do: "*"
+  defp get_summary_prefix_if_comment_id_posted(_comment_is_posted), do: "-"
 
   defp build_scrum_summary_message({trello_card, pull_requests}) do
     pull_requests
