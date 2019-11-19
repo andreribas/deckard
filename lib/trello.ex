@@ -7,12 +7,16 @@ defmodule Deckard.Trello do
   def post_comment_if_new(card_id, message) do
     card_comments = get_comments(card_id)
 
-    if filter_worked_hour(message) not in filter_worked_hours(card_comments) do
+    if not is_comment_already_posted?(message, card_comments) do
       post_comment(card_id, message)
       :ok
     else
       :none
     end
+  end
+
+  def is_comment_already_posted?(message, card_comments) do
+    filter_worked_hour(message) in filter_worked_hours(card_comments)
   end
 
   defp post_comment(card_id, message) do
@@ -23,7 +27,7 @@ defmodule Deckard.Trello do
     get_http_provider().post(url, "")
   end
 
-  defp get_comments(card_id) do
+  def get_comments(card_id) do
     api_key = Application.get_env(:deckard, :trello_api_key)
     token = Application.get_env(:deckard, :trello_token)
     url = "#{@trello_api_endpoint}/1/cards/#{card_id}/actions?key=#{api_key}&token=#{token}"
