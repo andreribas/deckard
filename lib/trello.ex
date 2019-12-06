@@ -35,6 +35,16 @@ defmodule Deckard.Trello do
     {:ok, %HTTPoison.Response{body: body }} = get_http_provider().get(url)
 
     body
+    |> process_body(card_id)
+  end
+
+  defp process_body(_body = "invalid id", card_id) do
+    IO.puts("A pull request with an invalid trello card id found. The invalid is #{card_id}")
+    []
+  end
+
+  defp process_body(body, _) do
+    body
     |> JSON.decode!
     |> extract_scrums()
   end
