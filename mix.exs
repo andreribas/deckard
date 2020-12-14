@@ -19,7 +19,7 @@ defmodule Deckard.MixProject do
 
   defp deps do
     [
-      {:httpoison, "~> 1.5"},
+      {:httpoison, "~>1.6"},
       {:jason, "~> 1.1"},
     ]
   end

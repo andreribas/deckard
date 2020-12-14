@@ -11,7 +11,7 @@ defmodule Deckard.Trello do
       post_comment(card_id, message)
       :ok
     else
-      :none
+      :ok
     end
   end
 
@@ -40,6 +40,11 @@ defmodule Deckard.Trello do
 
   defp process_body(_body = "invalid id", card_id) do
     IO.puts("A pull request with an invalid trello card id found. The invalid is #{card_id}")
+    []
+  end
+
+  defp process_body(_body = "card not found", card_id) do
+    IO.puts("Card #{card_id} was not found")
     []
   end
 
