@@ -5,7 +5,7 @@ defmodule Deckard.MixProject do
     [
       app: :deckard,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.10",
       start_permanent: true,
       deps: deps(),
     ]
@@ -19,8 +19,8 @@ defmodule Deckard.MixProject do
 
   defp deps do
     [
-      {:httpoison, "~>1.6"},
-      {:jason, "~> 1.1"},
+      {:httpoison, "~> 1.7"},
+      {:jason, "~> 1.2"},
     ]
   end
 end
