@@ -48,6 +48,11 @@ defmodule Deckard.Trello do
     []
   end
 
+  defp process_body(_body = "unauthorized card permission requested", card_id) do
+    IO.puts("Unauthorized to access #{card_id}")
+    []
+  end
+
   defp process_body(body, _) do
     body
     |> JSON.decode!
