@@ -30,9 +30,10 @@ defmodule Deckard.Github do
     |> extract_body
     |> JSON.decode!
     |> extract_nodes
-    |> Enum.map(&to_pull_requests/1)
-    |> Enum.filter(&is_valid_date?(&1, start_date, end_date))
-    |> Enum.filter(&is_org_name?(&1, org_name))
+    |> Stream.map(&to_pull_requests/1)
+    |> Stream.filter(fn x -> String.trim(x.trello_card) != "" end)
+    |> Stream.filter(&is_valid_date?(&1, start_date, end_date))
+    |> Stream.filter(&is_org_name?(&1, org_name))
   end
 
   defp get_http_provider(), do: Process.get(:deckard_http_provider, Application.get_env(:deckard, :http_provider))
